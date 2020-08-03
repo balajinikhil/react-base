@@ -1,36 +1,32 @@
 import React from 'react'
-import {BrowserRouter, Route} from 'react-router-dom'
+import {Route, Router, Switch} from 'react-router-dom'
 
-
+import history from '../history'
 import Header from './Header'
-import StreamList from './streams/StreamList'
-import StreamsCreate from './streams/StreamsCreate'
-import StreamsEdit from './streams/StreamsEdit'
-import StreamsDelete from './streams/StreamsDelete'
-import StreamsShow from './streams/StreamsShow'
-
+import StreamList from './Streams/StreamList'
+import StreamCreate from './Streams/StreamCreate'
+import StreamEdit from './Streams/StreamEdit'
+import StreamDelete from './Streams/StreamDelete'
+import StreamShow from './Streams/StreamShow'
 
 class App extends React.Component{
 
-
-
     render(){
-
-
         return(
             <div className="ui container">
-                <BrowserRouter>
-                <Header />
-                <Route path='/' exact component={StreamList} />
-                <Route path='/streams/new' component={StreamsCreate} />
-                <Route path='/streams/edit' component={StreamsEdit} />
-                <Route path="/streams/delete" component={StreamsDelete} />
-                <Route path="/streams/show" component={StreamsShow} />
-                </BrowserRouter>
+                <Router history={history}>
+                    <Header />
+                    <Switch>
+                    <Route path="/" exact component={StreamList}></Route>
+                    <Route path="/streams/new" component={StreamCreate}></Route>
+                    <Route path="/streams/edit/:id" component={StreamEdit}></Route>
+                    <Route path="/streams/delete/:id" component={StreamDelete}></Route>
+                    <Route path="/streams/:id" component={StreamShow} ></Route>
+                    </Switch>
+                </Router>
             </div>
         )
     }
 }
-
 
 export default App

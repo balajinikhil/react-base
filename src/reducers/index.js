@@ -1,8 +1,11 @@
 import {combineReducers} from 'redux'
-import googleReducer from './googleReducers'
+import {reducer as formReducer} from 'redux-form'
 
-
+import authReducer from './authReducers'
+import streamsReducer from './streamReducer'
 
 export default combineReducers({
-    auth:googleReducer
+    auth:authReducer,
+    form:formReducer,
+    streams:streamsReducer
 })
